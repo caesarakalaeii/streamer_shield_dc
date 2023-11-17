@@ -21,14 +21,14 @@ async def on_member_join(member):
 
     if response is not None:
         # Check the response value
-        value = response.get('value', 0)
+        value = response.get('value', 0)/10
 
-        if value > 0.5:
+        if value > 50:
             # Ban the user
-            await member.guild.ban(member, reason=f'Scored {value} on the API')
-            print(f'Banning user {member.name} with a score of {value}')
+            await member.guild.ban(member, reason=f"You've been classified by StreamerShield as a scammer, with {value}%.")
+            print(f'Banning user {member.name} with a score of {value}%')
         else:
-            print(f'User {member.name} joined with a score of {value}, not banning')
+            print(f'User {member.name} joined with a score of {value}%, not banning')
     else:
         print(f'Unable to check user {member.name}')
 
